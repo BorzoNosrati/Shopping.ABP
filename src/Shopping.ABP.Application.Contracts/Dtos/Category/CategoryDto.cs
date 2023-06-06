@@ -7,3 +7,8 @@ public class CategoryDto : EntityDto<int>
     public string Name { get; set; }
     public int? ParentId { get; set; }
 }
+
+public class GetCategoryListDto : PagedAndSortedResultRequestDto
+{
+    public string? Filter { get; set; }
+}

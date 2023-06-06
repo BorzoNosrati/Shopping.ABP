@@ -1,15 +1,20 @@
 ﻿using Shopping.ABP.Application.Contracts.Dtos.Category;
+using System.Threading.Tasks;
+using System;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
 namespace Shopping.ABP.Application.Contracts.Services;
 
-public interface ICategoryAppService :
-    ICrudAppService< //Defines CRUD methods
-        CategoryDto, //Used to show books
-        int, //Primary key of the book entity
-        PagedAndSortedResultRequestDto, //Used for paging/sorting
-        CreateUpdateCategoryDto> //Used to create/update a book
+public interface ICategoryAppService :IApplicationService
 {
+    Task<CategoryDto> GetAsync(int id);
 
+    Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryListDto input);
+
+    Task<CategoryDto> CreateAsync(CreateCategoryDto input);
+
+    Task UpdateAsync(int id, UpdateCategoryDto input);
+
+    Task DeleteAsync(int id);
 }
