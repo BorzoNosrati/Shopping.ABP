@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Shopping.ABP.Domain.Entities;
+using Shopping.ABP.Exceptions;
 using Shopping.ABP.Repositories;
 using System.Threading.Tasks;
 using Volo.Abp;
@@ -48,15 +49,5 @@ public class CategoryManager : DomainService
         }
 
         category.ChangeName(newName);
-    }
-}
-
-
-public class CategoryAlreadyExistsException : BusinessException
-{
-    public CategoryAlreadyExistsException(string name)
-        : base(ABPDomainErrorCodes.CategoryAlreadyExists)
-    {
-        WithData("name", name);
     }
 }

@@ -67,7 +67,7 @@ public class CategoryAppService : ABPAppService, ICategoryAppService
 
 
 
-[Authorize(ABPPermissions.Categorys.Create)]
+[Authorize(ABPPermissions.Categories.Create)]
 public async Task<CategoryDto> CreateAsync(CreateCategoryDto input)
 {
     var category = await _manager.CreateAsync(
@@ -82,7 +82,7 @@ public async Task<CategoryDto> CreateAsync(CreateCategoryDto input)
 
 
 
-[Authorize(ABPPermissions.Categorys.Edit)]
+[Authorize(ABPPermissions.Categories.Edit)]
 public async Task UpdateAsync(int id, UpdateCategoryDto input)
 {
     var category = await _repository.GetAsync(id);
@@ -98,7 +98,7 @@ public async Task UpdateAsync(int id, UpdateCategoryDto input)
 
 
 
-[Authorize(ABPPermissions.Categorys.Delete)]
+[Authorize(ABPPermissions.Categories.Delete)]
 public async Task DeleteAsync(int id)
 {
     await _repository.DeleteAsync(id);

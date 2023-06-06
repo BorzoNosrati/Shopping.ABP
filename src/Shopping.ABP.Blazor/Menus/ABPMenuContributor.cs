@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Shopping.ABP.Localization;
 using Shopping.ABP.MultiTenancy;
+using Shopping.ABP.Permissions;
 using Volo.Abp.Identity.Blazor;
 using Volo.Abp.SettingManagement.Blazor.Menus;
 using Volo.Abp.TenantManagement.Blazor.Navigation;
@@ -18,7 +19,7 @@ public class ABPMenuContributor : IMenuContributor
         }
     }
 
-    private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
+    private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
         var administration = context.Menu.GetAdministration();
         var l = context.GetLocalizer<ABPResource>();
@@ -37,14 +38,27 @@ public class ABPMenuContributor : IMenuContributor
             new ApplicationMenuItem(
                 "Shopping",
                 l["Menu:Shopping"],
-                icon: "fa fa-shopping"
+                icon: "fa fa-basket"
             ).AddItem(
                 new ApplicationMenuItem(
                     "Shopping.Products",
                     l["Menu:Products"],
                     url: "/products"
                 )
-    ));
+    )
+            
+            );
+
+        if (await context.IsGrantedAsync(ABPPermissions.Categories.Default))
+        {
+            context.Menu.AddItem(new ApplicationMenuItem(
+                "Shopping.Categories",
+                l["Menu:Categories"],
+                url: "/categories"
+            ));
+        }
+
+
         if (MultiTenancyConsts.IsEnabled)
         {
             administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
@@ -57,6 +71,6 @@ public class ABPMenuContributor : IMenuContributor
         administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
         administration.SetSubItemOrder(SettingManagementMenus.GroupName, 3);
 
-        return Task.CompletedTask;
+        //return await Task.CompletedTask;
     }
 }

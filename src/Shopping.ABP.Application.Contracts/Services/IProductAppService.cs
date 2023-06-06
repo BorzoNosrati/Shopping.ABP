@@ -1,4 +1,6 @@
-﻿using Shopping.ABP.Application.Contracts.Dtos.Product;
+﻿using Shopping.ABP.Application.Contracts.Dtos.Category;
+using Shopping.ABP.Application.Contracts.Dtos.Product;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -11,6 +13,6 @@ public interface IProductAppService :
         PagedAndSortedResultRequestDto, //Used for paging/sorting
         CreateUpdateProductDto> //Used to create/update a book
 {
-
+    Task<ListResultDto<CategoryLookupDto>> GetCategoryLookupAsync();
 
 }

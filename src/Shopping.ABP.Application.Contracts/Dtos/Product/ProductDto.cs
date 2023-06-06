@@ -8,6 +8,11 @@ public class ProductDto : AuditedEntityDto<int>
     public string Name { get; set; }
     public int CategoryId { get; set; }
     public float Price { get; set; }
-    public CategoryDto Category { get; set; }
+
+
+
+    public string CategoryName { get; set; }
+
+
 
 }

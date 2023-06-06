@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Application.Dtos;
+﻿using System;
+using Volo.Abp.Application.Dtos;
 
 namespace Shopping.ABP.Application.Contracts.Dtos.Category;
 
@@ -9,9 +10,4 @@ public class CategoryDto : EntityDto<int>
 
 
     public CategoryDto Parent { get; set; }
-}
-
-public class GetCategoryListDto : PagedAndSortedResultRequestDto
-{
-    public string? Filter { get; set; }
 }

@@ -74,6 +74,6 @@ public class ProductAppService_Tests : ABPApplicationTestBase
             .ShouldContain(err => err.MemberNames.Any(mem => mem == "Name"));
     }
 
-    
+
 
 }

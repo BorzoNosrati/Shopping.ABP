@@ -14,10 +14,19 @@ public class ABPApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
 
-        CreateMap<Product, ProductDto>();      
-        CreateMap<Category, CategoryDto>();
 
-        CreateMap<CreateUpdateProductDto, Product>();       
-        CreateMap<CreateUpdateCategoryDto, Category>();
+        // product
+        CreateMap<Product, ProductDto>();   
+        CreateMap<CreateUpdateProductDto, Product>();      
+
+
+        //category
+        CreateMap<Category, CategoryDto>();      
+        CreateMap<Category, CategoryLookupDto>();  
+  
+        CreateMap<CreateCategoryDto, Category>();
+        CreateMap<UpdateCategoryDto, Category>();
+
+        CreateMap<CategoryDto,UpdateCategoryDto >();
     }
 }

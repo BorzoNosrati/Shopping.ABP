@@ -26,8 +26,8 @@ public class ShoppingDataSeederContributor
         if (await _categoryRepository.GetCountAsync() > 0)
             return;
 
-        var cat1 = await _categoryRepository.InsertAsync(new() { Name = "Digital Gadget" }, autoSave: true);
-        var cat2 = await _categoryRepository.InsertAsync(new() { Name = "laptops", ParentId = cat1.Id }, autoSave: true);
+        var cat1 = await _categoryRepository.InsertAsync(new("Digital Gadget",null ) , autoSave: true);
+        var cat2 = await _categoryRepository.InsertAsync(new("Laptops",  cat1.Id) , autoSave: true);
 
         
         var pro1 = await _productRepository.InsertAsync(new() { CategoryId = cat2.Id, Name = "Macbook Pro 14" }, true);
