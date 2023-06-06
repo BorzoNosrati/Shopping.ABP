@@ -29,7 +29,7 @@ class Program
             .CreateLogger();
 
         await CreateHostBuilder(args).RunConsoleAsync();
-        await new ShoppingDataSeederContributor().SeedAsync();
+        //await new ShoppingDataSeederContributor().SeedAsync();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>

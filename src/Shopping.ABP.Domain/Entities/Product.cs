@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Domain.Repositories;
 
 namespace Shopping.ABP.Domain.Entities;
 

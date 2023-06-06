@@ -29,13 +29,13 @@ public class CategoryAppService : ABPAppService, ICategoryAppService
 
    
 
-    public Task<CategoryDto> GetAsync(int id)
+    public async Task<CategoryDto> GetAsync(int id)
     {
         var category = await _repository.GetAsync(id);
         return ObjectMapper.Map<Category, CategoryDto>(category);
     }
 
-    public Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryListDto input)
+    public async Task<PagedResultDto<CategoryDto>> GetListAsync(GetCategoryListDto input)
     {
         if (input.Sorting.IsNullOrWhiteSpace())
         {
@@ -60,13 +60,7 @@ public class CategoryAppService : ABPAppService, ICategoryAppService
         );
     }
 
-    public Task UpdateAsync(int id, UpdateCategoryDto input)
-    {
-        throw new System.NotImplementedException();
-    }
-
-
-   
+    
 
 
 

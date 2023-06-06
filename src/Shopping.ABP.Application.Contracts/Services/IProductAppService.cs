@@ -12,4 +12,5 @@ public interface IProductAppService :
         CreateUpdateProductDto> //Used to create/update a book
 {
 
+
 }
