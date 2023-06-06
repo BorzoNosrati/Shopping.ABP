@@ -6,4 +6,7 @@ public class CategoryDto : EntityDto<int>
 {
     public string Name { get; set; }
     public int? ParentId { get; set; }
+
+
+    public CategoryDto Parent { get; set; }
 }
