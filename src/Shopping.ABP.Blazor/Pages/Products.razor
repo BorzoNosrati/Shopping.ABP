@@ -39,7 +39,7 @@
     {
         if (!categoryList.Any())
         {
-            throw new UserFriendlyException(message: L["AnAuthorIsRequiredForCreatingBook"]);
+            throw new UserFriendlyException(message: L["AnCategoryIsRequiredForCreatingProduct"]);
         }
 
         await base.OpenCreateModalAsync();
@@ -184,7 +184,7 @@
                         </Field>
                     </Validation>
                     
-                    @*<Field>
+                    <Field>
                         <FieldLabel>@L["Category"]</FieldLabel>
                         <Select TValue="int" @bind-SelectedValue="@EditingEntity.CategoryId">
                             @foreach (var category in categoryList)
@@ -194,7 +194,7 @@
                                 </SelectItem>
                             }
                         </Select>
-                    </Field>*@
+                    </Field>
 
 
                     <Field>

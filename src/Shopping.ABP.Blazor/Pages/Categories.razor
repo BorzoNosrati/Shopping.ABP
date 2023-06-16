@@ -10,7 +10,17 @@
 @inject ICategoryAppService CategoryAppService
 @inject AbpBlazorMessageLocalizerHelper<ABPResource> LH
 
+@{
 
+    
+   
+
+
+   
+
+       
+
+}
 <Card>
     <CardHeader>
         <Row Class="justify-content-between">
@@ -92,7 +102,21 @@
                             </TextEdit>
                         </Field>
                     </Validation>
-                    
+                    <Field>
+                        <FieldLabel>@L["ParentCategory"]</FieldLabel>
+                        <Select TValue="int?">
+
+                            <SelectItem TValue="int?" Value="@(new int?())">
+                                @L["MainCategoryC"]
+                            </SelectItem>
+                            @foreach (var category in categoryList)
+                            {
+                                <SelectItem TValue="int?" Value="@category.Id">
+                                    @category.Name
+                                </SelectItem>
+                            }
+                        </Select>
+                    </Field>
                     
                 </Validations>
             </ModalBody>
@@ -132,6 +156,21 @@
                             </TextEdit>
                         </Field>
                     </Validation>
+                    <Field>
+                        <FieldLabel>@L["ParentCategory"]</FieldLabel>
+                        <Select TValue="int?" @bind-SelectedValue="@EditingCategory.ParentId">
+
+                            <SelectItem TValue="int?" Value="@(new int?())">
+                                @L["MainCategoryC"]
+                            </SelectItem>
+                            @foreach (var category in categoryList.Where(k => k.Id != EditingCategory.Id))
+                            {
+                                <SelectItem TValue="int?" Value="@category.Id">
+                                    @category.Name
+                                </SelectItem>
+                            }
+                        </Select>
+                    </Field>
                 </Validations>
             </ModalBody>
             <ModalFooter>

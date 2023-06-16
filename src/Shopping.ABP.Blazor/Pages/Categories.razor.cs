@@ -42,10 +42,13 @@ public partial class Categories
         EditingCategory = new UpdateCategoryDto();
     }
 
+    IReadOnlyList<CategoryLookupDto> categoryList = Array.Empty<CategoryLookupDto>();
+
     protected override async Task OnInitializedAsync()
     {
         await SetPermissionsAsync();
         await GetCategoriesAsync();
+        await GetLookupCategoriesAsync();
     }
 
     private async Task SetPermissionsAsync()
@@ -73,6 +76,13 @@ public partial class Categories
 
         CategoryList = result.Items;
         TotalCount = (int)result.TotalCount;
+    }
+    private async Task GetLookupCategoriesAsync()
+    {
+        var result = await CategoryAppService.GetCategoryLookupAsync();
+
+        categoryList = result.Items;
+        
     }
 
     private async Task OnDataGridReadAsync(DataGridReadDataEventArgs<CategoryDto> e)

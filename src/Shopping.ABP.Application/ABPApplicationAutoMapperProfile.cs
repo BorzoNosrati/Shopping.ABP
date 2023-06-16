@@ -17,7 +17,7 @@ public class ABPApplicationAutoMapperProfile : Profile
 
         // product
         CreateMap<Product, ProductDto>();   
-        CreateMap<CreateUpdateProductDto, Product>();      
+        CreateMap<CreateUpdateProductDto, Product>();       
 
 
         //category

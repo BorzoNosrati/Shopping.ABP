@@ -24,7 +24,10 @@
     "CategoryDeletionConfirmationMessage": "Are you sure to delete the category '{0}'?",
     "BirthDate": "Birth date",
     "NewCategory": "New category",
-
+    "ParentCategory": "Parent Category",
+    "MainCategoryC": "MAIN CATEGORY",
+    "MainCategory": "Main Category",
+    "AnCategoryIsRequiredForCreatingProduct": "Should be at list one category registered.",
 
 
     "Permission:Shopping": "Shopping",

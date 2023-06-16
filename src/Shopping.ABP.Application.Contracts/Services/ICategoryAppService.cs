@@ -17,4 +17,5 @@ public interface ICategoryAppService :IApplicationService
     Task UpdateAsync(int id, UpdateCategoryDto input);
 
     Task DeleteAsync(int id);
+    Task<ListResultDto<CategoryLookupDto>> GetCategoryLookupAsync();
 }

@@ -25,9 +25,9 @@ public class CategoryAppService : ABPAppService, ICategoryAppService
         _manager = manager;
     }
 
-    
 
-   
+
+
 
     public async Task<CategoryDto> GetAsync(int id)
     {
@@ -60,52 +60,59 @@ public class CategoryAppService : ABPAppService, ICategoryAppService
         );
     }
 
-    
 
 
 
 
 
 
-[Authorize(ABPPermissions.Categories.Create)]
-public async Task<CategoryDto> CreateAsync(CreateCategoryDto input)
-{
-    var category = await _manager.CreateAsync(
-        input.Name,
-        input.ParentId
-    );
 
-    await _repository.InsertAsync(category);
-
-    return ObjectMapper.Map<Category, CategoryDto>(category);
-}
-
-
-
-[Authorize(ABPPermissions.Categories.Edit)]
-public async Task UpdateAsync(int id, UpdateCategoryDto input)
-{
-    var category = await _repository.GetAsync(id);
-
-    if (category.Name != input.Name)
+    [Authorize(ABPPermissions.Categories.Create)]
+    public async Task<CategoryDto> CreateAsync(CreateCategoryDto input)
     {
-        await _manager.ChangeNameAsync(category, input.Name);
+        var category = await _manager.CreateAsync(
+            input.Name,
+            input.ParentId
+        );
+
+        await _repository.InsertAsync(category);
+
+        return ObjectMapper.Map<Category, CategoryDto>(category);
     }
-    category.ParentId = input.ParentId;
-
-    await _repository.UpdateAsync(category);
-}
 
 
 
-[Authorize(ABPPermissions.Categories.Delete)]
-public async Task DeleteAsync(int id)
-{
-    await _repository.DeleteAsync(id);
-}
+    [Authorize(ABPPermissions.Categories.Edit)]
+    public async Task UpdateAsync(int id, UpdateCategoryDto input)
+    {
+        var category = await _repository.GetAsync(id);
+
+        if (category.Name != input.Name)
+        {
+            await _manager.ChangeNameAsync(category, input.Name);
+        }
+        category.ParentId = input.ParentId;
+
+        await _repository.UpdateAsync(category);
+    }
 
 
 
+    [Authorize(ABPPermissions.Categories.Delete)]
+    public async Task DeleteAsync(int id)
+    {
+        await _repository.DeleteAsync(id);
+    }
+
+
+    public async Task<ListResultDto<CategoryLookupDto>> GetCategoryLookupAsync()
+    {
+        var categories = await _repository.GetListAsync();
+
+        return new ListResultDto<CategoryLookupDto>(
+            ObjectMapper.Map<List<Category>, List<CategoryLookupDto>>(categories)
+        );
+    }
 
 
 
